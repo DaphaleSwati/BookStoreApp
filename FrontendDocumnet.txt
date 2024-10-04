@@ -1,0 +1,76 @@
+Active code page: 65001
+
+C:\Users\SWATI\OneDrive\Desktop\bookstore>cd Frontend
+
+C:\Users\SWATI\OneDrive\Desktop\bookstore\Frontend>npm create vite@latest .
+Need to install the following packages:
+create-vite@5.5.2
+Ok to proceed? (y) y
+
+
+> npx
+> create-vite .
+
+√ Package name: ... frontend
+√ Select a framework: » React
+√ Select a variant: » JavaScript
+
+Scaffolding project in C:\Users\SWATI\OneDrive\Desktop\bookstore\Frontend...
+
+Done. Now run:
+
+  npm install
+  npm run dev
+
+
+C:\Users\SWATI\OneDrive\Desktop\bookstore\Frontend>npm instal
+l
+
+added 266 packages, and audited 267 packages in 28s
+
+102 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+
+C:\Users\SWATI\OneDrive\Desktop\bookstore\Frontend>npm run de
+v
+
+> frontend@0.0.0 dev
+> vite
+
+
+  VITE v5.4.8  ready in 453 ms
+
+  ➜  Local:   http://localhost:5173/
+  ➜  Network: use --host to expose
+  ➜  press h + enter to show help
+ctr c
+
+Tailwing install-->https://tailwindcss.com/docs/guides/vite
+C:\Users\SWATI\OneDrive\Desktop\bookstore\Frontend>npm install -D tailwindcss postcss autoprefixer
+    code inside tailwind.config.jsfile
+
+    Files change congig,tailwing css 
+    (/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {},
+  },
+  plugins: [],
+})
+
+daisyUI installation through--> npm i -D daisyui@latest
+
+
+//bookes are not accesseble freely in FreeBook component
+So create data for that create json file list.json in public folder
+
+
+install react slick using npm install react-slick --save
+
+for include css use 
