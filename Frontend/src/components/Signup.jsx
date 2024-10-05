@@ -1,18 +1,46 @@
+import axios from 'axios';
 import React from 'react';
 import { useForm } from "react-hook-form";
-import { Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Login from './Login';
 
 function Signup() {
+    const location=useLocation();
+    const navigate = useNavigate();
+    const from = location.state?.from?.pathname || "/";
     const {
         register,
         handleSubmit,
         formState: { errors },
       } = useForm()
     
-      const onSubmit = (data) => {
-        console.log(data);
-      }
+      const onSubmit = async(data) => {
+        // console.log(data);
+        const userInfo = {
+            fullname:data.fullname,
+            email:data.email,
+            password:data.password
+        }
+        await axios.post("http://localhost:3001/user/signup",userInfo)
+        .then((res)=>{
+            console.log(res.data);
+            if(res.data){
+                // alert("Signup Successful");
+                toast.success('Signup Successful');
+                // <Navigate to="/"/>
+                navigate(from,{replace:true});
+            }
+            localStorage.setItem("Users",JSON.stringify(res.data.user));
+        })
+        .catch((err)=>{
+           if(err.response){
+            console.log(err);
+            // alert("Error:"+err.response.data.message);
+            toast.error("Error:"+err.response.data.message);
+           }
+        })
+    };
   return (
     
 <div className="flex h-screen items-center justify-center ">
@@ -25,8 +53,8 @@ function Signup() {
         <div className='mt-5 spaceY-2 py-1'>
             <span >
             Name </span><br/>
-            <input {...register("name", { required: true })} type='text' placeholder="Enter your Name" className='bg-slate-300 w-80 px-3 border rounded-md outline-none'/>
-            <br/>{errors.name && <span className='text-sm text-red-500'>This field is required</span>}
+            <input {...register("fullname", { required: true })} type='text' placeholder="Enter your Name" className='bg-slate-300 w-80 px-3 border rounded-md outline-none'/>
+            <br/>{errors.fullname && <span className='text-sm text-red-500'>This field is required</span>}
         </div> 
 
         <div className='mt-5 spaceY-2 py-1'>

@@ -1,10 +1,25 @@
 // eslint-disable-next-line no-unused-vars
-import React from 'react';
+import axios from "axios";
+import React, { useEffect, useState } from 'react';
 import { Link } from "react-router-dom";
-import list from "../../public/list.json";
+// import list from "../../public/list.json";
 import Cards from './Cards';
 
 function Course() {
+    const [book,setBook]=useState([]);
+    useEffect(
+        ()=>{
+            const getBook = async()=>{
+                try{
+                 const res = await axios.get("http://localhost:3001/book");
+                 console.log(res);
+                 setBook(res.data);
+                }catch(error){
+                    console.log("Error: ",error);
+                }
+            }
+            getBook();
+        },[])
     // console.log(list);
   return (
     <>
@@ -18,7 +33,10 @@ function Course() {
             </div>
             <div className='mt-12 grid grid-cols-1 md:grid-cols-4'>
                 {
-                    list.map((item)=>{
+                    // list.map((item)=>{
+                    //     return <Cards key={item.id} item={item}/>
+                    // })
+                    book.map((item)=>{
                         return <Cards key={item.id} item={item}/>
                     })
                 }
